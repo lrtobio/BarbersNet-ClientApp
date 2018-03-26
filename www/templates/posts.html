@@ -1,0 +1,68 @@
+<ion-view view-title="{{'menu_6'|translate}}">
+    
+    <ion-nav-buttons side="right">
+        <!-- showFilterBar() -->
+        <button class="button button-icon icon ion-ios-search-strong light" ng-click="showSearchPopup()">
+        </button>
+        <!-- ion-funnel ion-pin ion-location ion-map ion-ios-ionic-outline ion-ios-location ion-ios-location-outline 
+        ion-android-compass ion-android-locate --> 
+        <!--<button class="button button-icon icon ion-ionic fontWhite" ng-click="openRadio()"></button>-->
+    </ion-nav-buttons>
+  <ion-content  style="background-image: url('img/bg_about.png'); background-size: cover;">
+      <ion-refresher
+            pulling-text="..."
+            on-refresh="doRefresh()" style="background-color: #EBEFF1">
+        </ion-refresher>
+    <ion-list>
+        <div class="card" style="margin: 2%" ng-repeat="post in posts | filter: criterio.value ">
+            <ion-item class="item-barber item-avatar item-icon-right">
+                <img src="img/img_nouser.png" ng-src="{{post.Barber.foto_url}}">
+                <h2>{{post.Barber.nombre}}</h2>
+                <!--<p>{{post.Post.created | amDateFormat: 'ddd MMMM D, YYYY.' }}</p>  -->
+                <p>{{post.Barber.nombrebarberia}}</p>   
+                <a href="#/app/barber-preview/{{post.Barber.id}}"><i class="icon ion-eye" style="color: #0a9dc7"></i></a>
+            </ion-item>
+            <ion-item class="item-image item-barber">
+                <div class="video-container" ng-if="post.Post.type_post == 'video'">
+                    <iframe  ng-src="{{trustSrc('https://www.youtube.com/embed/'+post.Post.content_post)}}" type="text/html" frameborder="0" allowfullscreen></iframe>
+                 
+                </div>
+                <div class="full-image" ng-if="post.Post.type_post == 'imagen'">
+                    <img src="{{post.Post.content_post}}">
+                </div>
+            </ion-item>
+            <ion-item class="item-barber item-body">                
+                <a id="{{'post'+ post.Post.id}}" ng-click="setLike(post.Post.id, post.Post.likes, $index)" class="{{post.Post.class}}"></a>
+                <a ng-click="sharePost(post.Post)" class="button button-small button-icon fontWhite icon ion-android-share-alt"></a>
+                <!--<a href="#" class="button button-small button-icon fontWhite icon ion-social-instagram-outline"></a>-->
+                
+                <hr class="separador">
+                <!--<a href="#" class="button button-icon fontWhite ion-settings"></a>-->
+                <i ng-class="post.Post.likes != 0 ? 'icon ion-heart' : 'icon ion-heart-broken' "></i> {{post.Post.likes}}<br/>
+                <p style="color: gainsboro; margin-bottom: 0; margin-top: 0" ng-if="post.Post.descripcion != '' && post.Post.descripcion != null">
+                    
+                    {{post.Post.descripcion}}
+                    
+                </p>
+                <small style="color: graytext" am-time-ago="post.Post.created"></small>
+            </ion-item>
+        </div>
+        <!--<iframe class='card' ng-src="//instagram.com/p/BSOXPSzBF_y/embed" style="display:block; height:350px; margin:2%; position:relative; width:100%;" type="text/html" frameborder="0" allowfullscreen></iframe>-->
+       <!--<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="7" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:35.0462962962963% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://www.instagram.com/p/BSOY9jWjDjv/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_blank">😂😂😂 #moriderisaapp #yasomos6millones</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">Una publicación compartida de Moriderisa 😎by @Eduardoflorezr (@moriderisa) el <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2017-03-29T14:08:50+00:00">29 de Mar de 2017 a la(s) 7:08 PDT</time></p></div></blockquote> <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>-->
+    </ion-list>
+        <script id='searchPopup.html' type='text/ng-template'>
+            <label class="item item-input" style="border-radius: 5px">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Search" ng-model="dataSearch.criterio">
+            </label>
+            
+            <br/>
+            <ion-radio class="wrapping-list" ng-model="dataSearch.type_content" ng-value="''"><i class="icon ion-home"></i> {{'all_sections'| translate}}</ion-radio>
+            <ion-radio class="wrapping-list" ng-model="dataSearch.type_content" ng-value="'news'"><i class="icon ion-star"></i> {{'news'| translate}}</ion-radio>
+            <ion-radio class="wrapping-list" ng-model="dataSearch.type_content" ng-value="'promos'"><i class="icon ion-speakerphone"></i> {{'promos'| translate}}</ion-radio>
+            <ion-radio class="wrapping-list" ng-model="dataSearch.type_content" ng-value="'sales'"><i class="icon ion-pricetag"></i> {{'sales'| translate}}</ion-radio>
+            <ion-radio class="wrapping-list" ng-model="dataSearch.type_content" ng-value="'vacancies'"><i class="icon ion-help-buoy"></i> {{'vacancies'| translate}}</ion-radio>
+    
+        </script>
+  </ion-content>
+</ion-view>

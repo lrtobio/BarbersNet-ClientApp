@@ -1,0 +1,113 @@
+<ion-view view-title="{{'new' | translate}}  {{'appointment' | translate}}">
+    
+    <ion-nav-bar class="bar-barber">
+        <ion-nav-back-button style=" color: #fff;"></ion-nav-back-button>
+    </ion-nav-bar>
+    
+    <ion-content class="fontWhite myContent" style="background-image: url('img/bg-appointments.jpg'); background-size: cover;" overflow-scroll="false">
+        <br/>
+        <br/>
+        <div ng-app="starter">
+            <form>
+                <div class="padding myPadding" style="text-align: center">
+                    <!--
+                    <i ng-if="dataAddAppo.barber_fotourl==null || dataAddAppo.barber_fotourl=='' " class="icon ion-android-person" style="font-size: 50px"></i>
+                    <i ng-if="dataAddAppo.barber_fotourl!=null && dataAddAppo.barber_fotourl!='' " class="icon {{dataAddAppo.barber_fotourl}}" style="font-size: 50px"></i>
+                    -->
+                    
+                    <!--
+                    <i ng-if="dataAddAppo.barber_fotourl==null || dataAddAppo.barber_fotourl=='' " class="icon ion-android-person" style="font-size: 50px" ></i>
+                    <img ng-if="dataAddAppo.barber_fotourl!=null && dataAddAppo.barber_fotourl!='' " src="{{dataAddAppo.barber_fotourl}}" class="avatar" width="50px" height="60px" style=" width: 50px; height: 60px;" />
+                    <br/>&nbsp;&nbsp;&nbsp;<strong>{{dataAddAppo.barber_name}}</strong><br/><b>Barber</b>
+                    <br/>
+                    -->
+                    <i ng-if="dataAddAppo.barber_fotourl==null || dataAddAppo.barber_fotourl=='' " class="icon ion-android-person" style="font-size: 50px"></i>
+                    <img ng-if="dataAddAppo.barber_fotourl!=null && dataAddAppo.barber_fotourl!='' " src="{{dataAddAppo.barber_fotourl}}" class="avatar" style=" width: 50px; height: 50px;" />
+                    <br/><br/>
+                    <p>{{'barber' | translate}} <br/><b>{{dataAddAppo.barber_name}}</b></p>
+                    
+                </div>
+                <hr> 
+                <div class="padding myPadding">
+                    <div class='row row-center' style="padding: 0px 0px 10px 0px">
+                        <i class="icon-service" ></i>&nbsp;&nbsp;&nbsp;
+                        <div class="col-80">
+                            <strong>{{'service' | translate}}</strong>
+                        </div>
+                        <div class="col">
+                            <i ng-class="dataAddAppo.selectServices.nombre ? 'ion-checkmark-circled calm':'assertive ion-alert' "></i>
+                        </div>
+                    </div>
+                    <label class="item item-select" style="border-radius: 5px">
+                        
+                        <!-- ng-options="service.Service as service.Service.nombre for service in barberServices track by service.Service.id"  -->
+                        <select id="selectServices" ng-model="dataAddAppo.selectServices" 
+                                ng-options="service.Service as (service.Service.titulo + ' (' + dataAddAppo.barber_currency +  service.Service.precio + '.00)') for service in barberServices track by service.Service.id" >
+                            <option value="">{{'select_service' | translate}}</option>
+                        </select>
+                    </label>
+                    <div class="row">
+                        <div class="col" style="text-align: center">
+                           {{dataAddAppo.selectServices.nombre}} 
+                        </div>
+                    </div>
+                    <div class="row" ng-if="dataAddAppo.selectServices.puntos!= null">
+                        <div class="col col-50" style="text-align: left">
+                            <strong>{{dataAddAppo.selectServices.puntos}} {{'points' | translate}}</strong>
+                        </div>    
+                        <div class="col col-50" style="text-align: right">
+                            <strong>{{dataAddAppo.selectServices.precio |currency: dataAddAppo.barber_currency + ' ':2}}</strong>
+                        </div>    
+                    </div>
+                </div> 
+                <hr>
+                <div class="padding myPadding">
+                <div class='row row-center' style="padding: 0">
+                    <i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;
+                    <div class="col-80">
+                        <strong>{{'set_date' | translate}}</strong>
+                    </div>
+                    <div class="col">
+                        <i ng-class="dataAddAppo.selectTime != '' && dataAddAppo.selectTime ? 'ion-checkmark-circled calm':'assertive ion-alert' "></i>
+                    </div>
+                </div>
+                <onezone-datepicker datepicker-object="onezoneDatepicker">
+                    <button class="button button-block button-small button-stable show-onezone-datepicker" style="border-radius: 5px">
+                        <strong><span class="capitalize dark">{{dataAddAppo.date | amDateFormat:'dddd. MMMM DD, YYYY'}}</span></strong>
+                    </button>                    
+                </onezone-datepicker>
+                <input ng-model="dataAddAppo.date" id="date" type="hidden" style="color: black;" value="{{dataAppo.date}}" />
+                
+                    <label class="item item-select" style="border-radius: 5px">
+                        
+                        <!-- ng-change='openSelect2("#selectServices")' -->
+                        <select id="selectTime" ng-model="dataAddAppo.selectTime" 
+                                ng-options="time.id as time.value for time in timeList track by time.id" >
+                            <option value="">{{'select_time' | translate}}</option>
+                        </select>
+                    </label> 
+                <!--<strong><span class="capitalize">{{dataAddAppo.date+" "+dataAddAppo.selectTime | amDateFormat:'dddd MMMM D, YYYY.'}}</span>{{dataAddAppo.date+" "+dataAddAppo.selectTime | amDateFormat:' h:mm a'}}</strong>-->
+                </div>
+                <hr>
+                <label class="myPadding item item-input item-stacked-label item-borderless">
+                    <i class="light ion-cash" style="font-size: 200%"></i>&nbsp;&nbsp;&nbsp;<strong>{{'tip' | translate}}</strong><br/>
+                    <input type="number" id="propina" value="{{dataAppo.valoradicional}}" placeholder=" {{'tip' | translate}} ({{dataAddAppo.barber_currency}})" min="0" >
+                </label>
+                <label class="myPadding item item-input item-stacked-label item-borderless">
+                    <i class="light ion-chatbubble-working" style="font-size: 200%"></i>&nbsp;&nbsp;&nbsp;<strong>{{'obs' | translate}}</strong><br/>
+                    <textarea ng-model="dataAddAppo.observations" placeholder="{{'obs_ph' | translate}}"></textarea>
+                </label>
+                
+                <br/>
+                <button type="submit" name="submit" ng-click="saveAppointment()" class="button button-full fontWhite myRed">{{'add' | translate}}</button>
+                <br/>
+                
+            </form>
+        </div>
+
+    </ion-content>
+    <!--<ion-footer-bar class="footer-bar-custom bar-assertive">
+        <a class="footer-bar-item item-center button button-clear">Add Appointment</a>
+    </ion-footer-bar>-->
+</ion-view>
+

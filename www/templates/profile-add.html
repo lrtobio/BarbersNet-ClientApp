@@ -1,0 +1,80 @@
+<ion-view view-title="{{'sign_up'| translate}}">
+    
+    <ion-nav-bar class="bar-barber">
+        <ion-nav-back-button style=" color: #fff;"></ion-nav-back-button>
+    </ion-nav-bar>
+    
+    <ion-content class="fontWhite" style="background: url(img/bg-detail-client.png) center; background-size: cover;">
+        <center>
+            <img id ="foto" ng-model="dataAddProfile.foto" class="avatar" ng-click="borrarFoto()"/>
+            <div class="row myPadding">
+                <div class="col">
+                    <a href="" ng-click="cargarFoto()"><img ng-src="img/adjuntar.png" width="25%"/></a>&nbsp;&nbsp;&nbsp;
+                    <a href="" style=" opacity: 0.8; " ng-click="rotateImage()"><img ng-src="img/btn_rotate.png" style=" background: #FFFFFF; border-radius: 100% ;border-color: #A91213" width="25%"/></a>&nbsp;&nbsp;&nbsp;
+                    <a href="" ng-click="tomarFoto()"><img ng-src="img/camera.png" width="25%"/></a>
+                </div>
+            </div>
+        </center>
+        <div class="list">            
+            <form >
+                <div class="myPadding item item-input item-stacked-label fontWhite">
+                    {{'required'| translate}}<br/><br/>
+                    <span class="input-label fontWhite bold"><b>*</b> {{'email'| translate}} ({{'email_obs'| translate}})</span>
+                    <input type="email" ng-model="dataAddProfile.email" placeholder=" {{'email'| translate}}">
+                    
+                    <span class="input-label fontWhite bold"><b>*</b> {{'password'| translate}} ({{'password_obs'| translate}})</span>
+                    <input type="password" ng-model="dataAddProfile.password" placeholder=" ********">
+                    
+                    <span class="input-label fontWhite bold"><b>*</b> {{'name'| translate}}</span>
+                    <input type="text" ng-model="dataAddProfile.name" placeholder=" {{'full_name'| translate}}">
+                    
+                    <span class="input-label fontWhite bold"><b>*</b> {{'phone'| translate}}</span>
+                    <input type="tel" ng-model="dataAddProfile.phone" placeholder=" {{'phone'| translate}}">
+                    
+                </div>
+                
+                <div class="myPadding item item-input item-stacked-label fontWhite">
+                    
+                    {{'optional'| translate}}<br/><br/>
+                    
+                    <table width="100%">
+                        <tr>
+                            <td><span class="input-label fontWhite bold">{{'barber_ref_code'| translate}}</span></td>
+                            <td align="right"><a href="" ng-click="abrirPopup('referralcode')"><i ng-click="" class="icon ion-help text-right fontWhite" ></i></a></td>
+                        </tr>
+                    </table>
+                    <input type="text" ng-model="dataAddProfile.codigobarbero" placeholder=" Code">
+                    
+                    <span class="input-label fontWhite bold">{{'gender'| translate}}</span><br/>
+                    <label class="item item-select">
+                        <select name="gender" ng-model="dataAddProfile.gender">
+                            <option value="M">{{'male'| translate}}</option>
+                            <option value="F">{{'female'| translate}}</option>
+                        </select>
+                    </label>
+                    
+                    <span class="input-label fontWhite bold">{{'birthdate'| translate}}</span>
+                        <onezone-datepicker datepicker-object="onezoneDatepicker">
+                            <button class="button button-block button-stable show-onezone-datepicker" style="border-radius: 4px; margin-top: 0px; margin-bottom: 0px;">
+                                {{ dataAddProfile.birthdate }} 
+                            </button>
+                        </onezone-datepicker>
+                        <strong><span class="fontWhite">{{dataEditProfile.birthdate | amDateFormat:'dddd. MMMM Do YYYY'}}</span></strong>
+                        <input ng-model="dataAddProfile.birthdate" id="date" type="hidden" style="color: black;" value="{{dataAddProfile.birthdate}}" />
+                
+                    <!--Optional<br/>-->
+                    <table width="100%">
+                        <tr>
+                            <td><span class="input-label fontWhite bold">{{'comments'| translate}}</span></td>
+                            <td align="right"><a href="" ng-click="abrirPopup('comments')"><i ng-click="" class="icon ion-help text-right fontWhite" ></i></a></td>
+                        </tr>
+                    </table>
+                    <textarea ng-model="dataAddProfile.observations" placeholder=" {{'obs_ph'| translate}}"></textarea>
+                    
+                </div>
+                <button type="submit" name="submit" ng-click="addProfile()" class="button button-full myRed fontWhite" >{{'save'| translate}}</button>
+            </form>
+        </div>
+
+    </ion-content>
+</ion-view>

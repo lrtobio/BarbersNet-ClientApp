@@ -1,0 +1,55 @@
+<ion-view view-title="Barber Info">
+    
+    <!--
+    <ion-nav-bar class="bar-barber">
+        <ion-nav-back-button class="fontWhite"></ion-nav-back-button>
+    </ion-nav-bar>
+    -->
+    <ion-nav-bar class="bar-barber">
+        <ion-nav-back-button style=" color: #fff;"></ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class="padding fontWhite myContent" style="background-image: url('img/bg-barber-preview.png'); background-size: cover;">
+        <br/>
+        <center>
+            <img ng-src="{{barber.Barber.foto_url}}" class="avatar" width="30%"/>
+            <h3>{{barber.Barber.nombre}}</h3>
+            
+            <div ng-if="barber.Barber.descripcion!=null && barber.Barber.descripcion!='' "><p style="text-align: center; font-style: italic">"{{barber.Barber.descripcion}}"</p><hr/></div>
+            
+            <p style="text-align: left" class="myPadding">{{'address' | translate}}: {{barber.Barber.direccion}}
+                <br/>
+                {{'phone' | translate}}: +{{barber.Barber.telefono}}
+                <br/>
+                {{'email' | translate}}: {{barber.Barber.email}}
+            </p>
+            <p style="text-align: left" class="myPadding" ng-if="barber.Barber.nombrebarberia!=null && barber.Barber.nombrebarberia!='' "><b>{{'barbershop' | translate}}:</b> {{barber.Barber.nombrebarberia}}</p>
+            
+            <!--
+            <hr>
+            <p>Address: {{barber.Barbershop.direccion}}<br/>
+                Phone: +{{barber.Barbershop.telefonos}}
+                <!--<br/>
+                London UK-->
+                <!--
+            </p>
+            -->
+            <hr>
+            <br/>            
+            <div>
+                <!--<a href="tel:+{{barber.Barber.telefono}}"><img src="img/btn-call.png" width="30%"/></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="mailto:{{barber.Barber.email}}" ><img src="img/btn-mail.png" width="30%" /></a>
+                
+                <a href="#/app/appointment-add/{{barber.Barber.id}}" ><img src="img/btn-add.png" width="30%" /></a>-->
+                <a href="tel:+{{barber.Barber.telefono}}"><img src="img/btn-call.png" width="20%"/></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="mailto:{{barber.Barber.email}}" ><img src="img/btn-mail.png" width="20%" /></a>
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#/app/appointment-add/{{barber.Barber.id}}" ><img src="img/btn-add.png" width="20%" /></a>
+            </div>
+
+        </center>
+    </ion-content>
+</ion-view>

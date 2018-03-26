@@ -1,0 +1,43 @@
+<ion-view view-title="{{'menu_2' | translate}}">
+    <ion-nav-buttons side="right">
+        <a href="#/app/profile-edit"><i class="button button-icon fontWhite ion-compose" ></i></a>
+    </ion-nav-buttons> 
+    <ion-content class="fontWhite myContent myPadding" style="background-image: url('img/bg-detail-client.png'); background-size: cover;">
+        <br/>
+        <br/>
+        <center>
+            
+            <img ng-src="{{muser.MobileUser.foto}}" class="avatar"/>
+            
+            <h3>{{muser.MobileUser.nombre}}</h3>
+            <p>{{muser.MobileUser.email}}
+            <br/>{{'phone'| translate}}: +{{muser.MobileUser.telefono}}
+            <br/>{{'client_since'| translate}} <span am-time-ago="muser.MobileUser.created"></span></p>
+            <!--<br/>-->
+            <a href="#" ng-click="shareLinkClients()" style=" opacity: 0.7; "><ion-icon class="icon-share" style=" background: #FFFFFF; border-radius: 100% ;border-color: #A91213; padding: -1px -1px -1px -1px;"></ion-icon></a>
+            <br/>
+            <!--<a href="#" class="button"  onclick="window.open('http://www.instagram.com/lrtobio', '_system', 'location=yes'); return false;">
+                <ion-icon class="ion-social-instagram" style=" background: #FFFFFF; border-radius: 100% ;border-color: #A91213"></ion-icon>
+            </a>-->
+            <hr>
+            <div class="col col-80">
+                <ion-slide-box>
+                    <ion-slide>
+                       <div class = "box1">
+                          <p>{{'points'| translate}}</p>
+                            <h1>{{muser.MobileUser.puntosacumulados}}</h1>
+                            <br/>
+                       </div>
+                    </ion-slide>
+                    <ion-slide>
+                       <div class = "box1">
+                          <p>{{'appointment'| translate}}s</p>
+                            <h1>{{muser.Appointment.length}}</h1>
+                            <br/>
+                       </div>
+                    </ion-slide>
+                </ion-slide-box>
+            </div>
+        </center>
+    </ion-content>
+</ion-view>

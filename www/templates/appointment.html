@@ -1,0 +1,88 @@
+<ion-view view-title="{{'detail_appo' | translate}}">
+    
+    
+    <ion-nav-bar class="bar-barber">
+        <!--<ion-nav-back-button style="color: #fff;"></ion-nav-back-button>-->
+    </ion-nav-bar>
+   
+    <!--
+    <ion-nav-bar class="bar-barber" ng-controller="AppointmentDetailCtrl">
+        <ion-nav-back-button class="button-clear" style="color: #fff;" ng-click="myGoBack()">
+          <i class="ion-arrow-left-c"></i> Back
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    -->
+    
+    <!-- ng-controller="AppointmentDetailCtrl" -->
+    <ion-nav-buttons side="left" class="bar-barber" >
+        
+        <button class="button button-icon icon ion-arrow-left-c fontWhite" ng-click="myGoBack()"></button>
+        
+        <!--
+        <ion-nav-back-button class="button-clear" style="color: #fff;" ng-click="myGoBack()">
+          <i class="ion-arrow-left-c"></i> Back
+        </ion-nav-back-button>
+        -->
+    </ion-nav-buttons>
+
+    <ion-content class="padding fontWhite myContent" style="background-image: url('img/bg-detail-appo.png'); background-size: cover;">
+        <br/>
+        <center>
+            <img ng-src="{{appointment.Barber.foto_url}}" class="avatar" width="30%"/>
+         
+            <h3>{{appointment.Barber.nombre}}</h3>
+            {{appointment.Barber.descripcion}}
+            <p>{{'barbershop' | translate}}: {{appointment.Barbershop.name}}</p>
+            <p>{{appointment.Barbershop.dir}}, {{appointment.Barbershop.phones}}
+                <!--<br/>London UK -->
+            </p>
+            
+            <h3>{{'appointment' | translate}}</h3>
+            <p>{{appointment.Appointment.fecha | amDateFormat:'dddd. MMMM D YYYY, h:mm a'}}<br/>{{appointment.Service.nombre}},&nbsp;&nbsp;{{appointment.Service.precio | currency: appointment.Service.currency +' ' : 2}}<br/> <small ng-if="appointment.Appointment.valoradicional != '' ">{{label_tipovalor}}: {{appointment.Appointment.valoradicional | currency: appointment.Service.currency +' ' : 2}}</small></p>
+            
+            <div id="link"></div>
+            <br/>
+            <!--
+            <div ng-if="appointment.Service.linkdepago!=null && appointment.Service.linkdepago!='' ">
+                
+                <a ng-if="appointment.Service.link=='url' || appointment.Service.link==='url' " class="button button-icon icon ion-cash fontWhite" href="{{appointment.Service.linkdepago}}" target="_blank" >&nbsp;&nbsp;Click here to pay</a>
+                
+                <code ng-if="appointment.Service.link=='form' || appointment.Service.link==='form' ">
+                    {{appointment.Service.linkdepago}}
+                </code>
+            </div>
+            -->
+            
+            <div>
+                <a href="tel:{{appointment.Barber.telefono}}"><img src="img/btn-call.png" width="20%"/></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="mailto:{{appointment.Barber.email}}" ><img src="img/btn-mail.png" width="20%" /></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a ng-if="modificarcita==true" ng-click="removeAppointment(appointment.Appointment.id)" ><img src="img/btn-delete.png" width="20%"/></a>
+            </div>
+            
+            <!--
+            <div ng-if="modificarcita==true">
+                <a href="#" ng-click="confirmAppointment(appointment.Appointment.id)" >Confirm</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a ng-click="cancelAppointment(appointment.Appointment.id)" >Decline</a>
+            </div>
+            -->
+            
+            <!--
+            <br/>
+            <div ng-if="modificarcita==true">
+                
+                <button ng-click="confirmAppointment(appointment.Appointment.id)" class="disable-hover button button-default">
+                    <span class="button-inner">Confirm</span>
+                </button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button ng-click="cancelAppointment(appointment.Appointment.id)" class="disable-hover button button-default">
+                    <span class="button-inner">Cancel</span>
+                </button>
+            </div>
+            -->
+
+        </center>
+    </ion-content>
+</ion-view>

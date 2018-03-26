@@ -1,0 +1,59 @@
+<ion-view view-title="{{'menu_1' | translate}}">
+    
+    <!-- necesario para el caso en que se llega a esta vista tras un registro exitoso -->
+    <!--<ion-side-menu side="left"></ion-side-menu>-->
+    
+    <ion-nav-bar class="bar-barber">
+        <!--<ion-nav-back-button style="color: #fff;"></ion-nav-back-button>-->
+    </ion-nav-bar>
+    
+    <ion-nav-buttons side="left" class="bar-barber" >
+        <!--<button class="button button-icon icon ion-navicon fontWhite" ></button>-->
+        <button menu-toggle="left" class ="button button-icon icon ion-navicon fontWhite"></button>
+    </ion-nav-buttons>
+    
+    <!--
+    <ion-nav-buttons side="right">
+        <a href="#/app/profile-edit"><i class="button button-icon fontWhite ion-compose" ></i></a>
+    </ion-nav-buttons>
+    -->
+    
+    <ion-nav-buttons side="right">
+        <!--<a href="#/app/searchBack/false"><i class="button button-icon fontWhite button-new" ></i></a>-->
+        <a href="#/app/appointment-add/0"><i class="button button-icon fontWhite button-new" ></i></a>
+    </ion-nav-buttons>
+    
+    
+    <!--
+    <ion-nav-buttons side="right">
+       <i class="button button-icon button-new" ui-sref="app.search"></i>
+    </ion-nav-buttons>
+    -->
+   
+    <ion-content style="background-image: url('img/bg-appointments.jpg'); background-size: cover;">
+        <!--<br/><br/><br/><br/>-->
+        <ion-refresher
+            pulling-text="..."
+            on-refresh="doRefresh()" style="background-color: #EBEFF1">
+        </ion-refresher>
+        <center>
+            <p class="fontWhite" ng-if="appointments==null || appointments.length<=0 "><br/><br/><br/>{{'pending_appo' | translate}}</p>
+        </center>
+        <ion-list class="myion-list">
+            <ion-item class="clearBg fontWhite item-remove-animate item-icon-right" ng-repeat="appo in appointments" href="#/app/appointment/{{appo.Appointment.id}}">
+                &nbsp;&nbsp;{{appo.Service.nombre}}
+                <br/>&nbsp;&nbsp;{{'barber' | translate}}: {{appo.Barber.nombre}}
+                <br/>
+                <strong class='capitalize'>&nbsp;&nbsp;{{appo.Appointment.fecha | amDateFormat:'ddd MMMM D, YYYY.'}} </strong><strong>{{appo.Appointment.fecha | amDateFormat:'h:mm a'}} </strong>
+                <i class="icon icon-accessory"><span class="badge badge-stable">{{appo.Service.precio | currency:appo.Service.currency+' ' :2}}</span></i>
+                <!--<p align="right" style="color: #fff" am-time-ago="appo.Appointment.created"></p>-->
+
+                <ion-option-button class="button-assertive" ng-click="removeAppointment(appo.Appointment.id)">
+                  Delete
+                </ion-option-button>
+                
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    
+</ion-view>

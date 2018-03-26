@@ -1,0 +1,141 @@
+<ion-view view-title="{{'menu_4' | translate}}">
+    
+    <!--
+    <ion-nav-buttons side="left">
+        <!-- Toggle left side menu -->
+        <!--<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    -->
+    
+    <!--
+    <ion-nav-bar>
+        <ion-nav-back-button class="button-clear">
+          <i class="ion-arrow-left-c"></i> Back
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    -->
+    <!--
+    <ion-nav-bar>
+        <ion-nav-back-button class="button-clear">
+            <i class="ion-arrow-left-c"></i> Back
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    -->
+    <!--
+    <ion-nav-bar>
+        <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+    -->
+    <!--
+    <ion-side-menu ng-if="frommenu==true || frommenu===true " side="left"></ion-side-menu>
+    
+    <ion-nav-bar ng-if="frommenu==false || frommenu===false">
+        <ion-nav-back-button class="button-clear">
+            <i class="ion-arrow-left-c fontWhite"></i> Back
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    -->
+    <!--
+    <ion-nav-bar ng-if="frommenu==false || frommenu===false" class="fontWhite">
+        <ion-nav-back-button 
+            ng-if="frommenu==false || frommenu===false || frommenu=='false' || frommenu==='false' " 
+            class="fontWhite" style=" color: #ffff;">
+                
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    -->
+    
+    <!--
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-search-strong" ng-click="showFilterBar()">
+        </button>
+    </ion-nav-buttons>
+    -->
+    
+    <!--
+    <ion-nav-buttons side="left">
+        <button ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item fontWhite">
+            <i class="icon ion-ios-arrow-back"></i>
+            <span class="back-text">
+                <span class="default-title">Back</span>
+                <span class="previous-title hide">My Agenda (0)</span>
+            </span>
+        </button>
+    </ion-nav-buttons>
+    -->
+    
+    <!--
+    <ion-nav-bar class="bar-barber">
+        <ion-nav-back-button><i class="ion-arrow-left-c fontBlack"></i>Back</ion-nav-back-button>
+    </ion-nav-bar>
+    -->
+    
+    <!-- ng-if="frommenu==true || frommenu===true " -->
+    <ion-side-menu  side="left"></ion-side-menu>
+    
+    
+    
+    <!--
+    <ion-nav-buttons side="left">
+        <i class="ion-arrow-left-c fontBlack"></i> Back
+    </ion-nav-buttons>
+    -->
+    <ion-nav-buttons side="right">
+        <!-- showFilterBar() -->
+        <button class="button button-icon icon ion-ios-search-strong fontWhite" ng-click="showCriteriaPopup()">
+        </button>
+        <!-- ion-funnel ion-pin ion-location ion-map ion-ios-ionic-outline ion-ios-location ion-ios-location-outline 
+        ion-android-compass ion-android-locate --> 
+        <!--<button class="button button-icon icon ion-ionic fontWhite" ng-click="openRadio()"></button>-->
+    </ion-nav-buttons>
+    
+    <!--
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon icon ion-ios-search-strong" ng-click="showFilterBar()">
+        </button>
+    </ion-nav-buttons>
+    -->
+    <ion-content overflow-scroll='false' scroll="false" style="background: url(img/bg-barber-preview.png) center; background-size: cover;">
+        
+        <div class="div-on-top">
+        <map on-create="mapCreated(map)"></map>
+        </div>
+        <ion-scroll direction="y" class="list-on-bottom">
+        <ion-list class="list animate-fade-slide-in-right myion-list">
+            <ion-item class="item item-avatar item-icon-right clearBg fontWhite" ng-repeat="barber in barbers"
+                      href="#/app/barber-preview/{{barber.Barber.id}}">
+                <img ng-src="{{barber.Barber.foto_url}}" />
+                <h2 style="font-weight: bold">{{barber.Barber.nombre}}</h2>
+                <p style="color: #fff" ng-if="barber.Barber.nombrebarberia!=null && barber.Barber.nombrebarberia!='' ">{{'barbershop' | translate}}: {{barber.Barber.nombrebarberia}}</p>
+                <p style="color: #fff" ng-if="barber.Barber.distance!=null && barber.Barber.distance!='' ">{{barber.Barber.distance}} Km.</p>
+                <a ng-click="centerOn($index)"><i class="icon ion-ios-navigate" style="color: #0a9dc7"></i></a>
+            </ion-item>
+        </ion-scroll>
+        
+        <!--
+        <script id='radioPopup.html' type='text/ng-template'>
+            <ion-radio class="wrapping-list" ng-model="radio.value" ng-value="'1'">1Km</ion-radio>
+            <ion-radio class="wrapping-list" ng-model="radio.value" ng-value="'2'">2Km</ion-radio>
+            <ion-radio class="wrapping-list" ng-model="radio.value" ng-value="'5'">5Km</ion-radio>
+            <ion-radio class="wrapping-list" ng-model="radio.value" ng-value="'10'">10Km</ion-radio>
+            <ion-radio class="wrapping-list" ng-model="radio.value" ng-value="'20'">20Km</ion-radio>
+        </script>
+        -->
+        
+        <script id='searchPopup.html' type='text/ng-template'>
+            <center>{{'type_criteria' | translate}}</center>
+            <input type="text" ng-model="criterio.value" >
+            
+            <br/>
+            <center>{{'distance' | translate}}</center>
+            <ion-radio class="wrapping-list" ng-model="radio.value" ng-value="'5'">5Km</ion-radio>
+            <ion-radio class="wrapping-list" ng-model="radio.value" ng-value="'10'">10Km</ion-radio>
+            <ion-radio class="wrapping-list" ng-model="radio.value" ng-value="'20'">20Km</ion-radio>
+    
+        </script>
+        
+    </ion-content>
+    <ion-footer-bar class="bar myRed fontWhite">
+      <a ng-click="centerOn('me')" class="button button-icon icon ion-navigate fontWhite"></a>
+    </ion-footer-bar>
+</ion-view>

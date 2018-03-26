@@ -1,0 +1,64 @@
+<ion-view view-title="{{'login' | translate}}">
+    
+    <ion-nav-bar class="bar-barber">
+        <ion-nav-back-button style=" color: #fff;"></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content style="background: url(img/bg-intro.jpg) center; background-size: cover;">
+        
+        <br/>
+        <div class="hero no-header flat">
+            <div class="content">
+                <div class="app-icon" ></div>
+                <!--<center><h3>Barbersnet for Clients</h3></center>-->
+            </div>
+        </div>
+        <br/>
+        <!--
+        <div>
+            <center>
+                <h3><a style=" color: #44d8ea; font-family: arial; font: bold;" href="#/app/profile-add" >Create an account</a></h3>
+            </center>
+            <br/>
+        </div>
+        -->
+        
+        <form ng-submit="doLogin()">
+            <div class="list list-inset" style="margin-bottom: 0px">
+                
+                <!-- item-floating-label -->
+                <label class="item item-input">
+                    <i class="icon ion-ios-email placeholder-icon"></i>
+                    <!--<span class="input-label">Email</span>-->
+                    <input type="email" placeholder="E-Mail" ng-model="loginData.email">
+                </label>
+          
+                  <label class="item item-input">
+                    <i class="icon ion-locked placeholder-icon"></i>
+                    <!--<span class="input-label">Password</span>-->
+                    <input type="password" placeholder="{{'password' | translate}}" ng-model="loginData.password">
+                  </label>
+        </div>
+        <div class="padding">
+            <button type="submit" class="button button-block myRed fontWhite ink">{{'sign_in' | translate}}</button>
+            <a style=" color: #fff; display: block; font-size: 110%; text-align: center" href="#" ng-click="forgotPassword()" >{{'forgot_password' | translate}}</a>
+        </div>
+        </form> 
+        <div class="or-box padding">
+                    <div class="row">
+                        <div class="col">
+                            <a href="#/app/profile-add" class="button button-stable button-small button-block">{{'create_account' | translate}}</a>
+                        </div>
+                    </div>
+                </div>
+        <div>
+            <!--
+            <center>
+                <h4><a style=" color: #49b8c5;" href="#" ng-click="forgotPassword()" >Did you forget your password ?</a></h4>
+                <h4><a style=" color: #49b8c5;" href="#/app/profile-add" >Create an account</a></h4>
+            </center>-->
+        </div>
+        
+        
+    </ion-content>
+</ion-view>
+
